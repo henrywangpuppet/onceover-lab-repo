@@ -1,11 +1,11 @@
 # Classes to be tested
 classes:
+  - role::augeastest
   - role::database_server
   - role::webserver
   - role::goldload_server
   - role::loadbalancer
   - role::example
-  - role::callaugeas
 
 # Nodes to tests classes on, this refers to a 'factset' or 'nodeset'
 # depending on whether you are running 'spec' or 'acceptance' tests
@@ -43,6 +43,7 @@ class_groups:
     - role::webserver
     - role::goldload_server
     - role::example
+    - role::augeastest 
 
 # You can group nodes here to save typing
 # We have created a 'non_windows_nodes' group because we can't
@@ -56,9 +57,6 @@ node_groups:
   non_windows_nodes:
     include: 'all_nodes'
     exclude: 'windows_nodes'
-  callaugeas_nodes:
-    - RHEL-7.4
-    - RHEL-6.7
   haproxy_nodes:
     - SLES-12.1-64
     - Debian-6.0.10-32
@@ -82,9 +80,6 @@ node_groups:
 test_matrix:
   - all_nodes:
       classes: 'general_class'
-      tests: 'spec'
-  - callaugeas_nodes: 
-      classes: 'role::callaugeas'
       tests: 'spec'
   - haproxy_nodes:
       classes: 'role::loadbalancer'
