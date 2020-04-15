@@ -4,6 +4,4 @@ class profile::tomlrb {
     provider => 'puppetserver_gem',
     notify => Service['pe-puppetserver']
   }
-
-
 }
